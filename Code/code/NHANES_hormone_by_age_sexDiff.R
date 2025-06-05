@@ -1,0 +1,61 @@
+library(haven)
+library(ggplot2)
+library(gghalves)
+
+hormone = read_xpt("/home/ubuntu/NHANES_hormone/TST_I.XPT")
+demography = read_xpt("/home/ubuntu//NHANES_hormone/DEMO_I.XPT")
+demography = demography[match(hormone$SEQN,demography$SEQN),]
+medical = read_xpt("/home/ubuntu//NHANES_hormone/MCQ_I.XPT")
+medical = medical[match(hormone$SEQN,medical$SEQN),]
+
+age = demography$RIDAGEYR
+gender = demography$RIAGENDR
+gender[which(gender == 1)] = "Male"
+gender[which(gender == 2)] = "Female"
+gender = factor(gender)
+
+age_at_thyroidCancer = medical$MCQ240BB
+
+# Hormone names
+testosterone = hormone$LBXTST # unit = ng/dL
+estradiol = hormone$LBXEST # unit = pg/mL
+SHBG = hormone$LBXSHBG #sex_hormone_binding_globulin; unit = nmol/L
+
+# Plot hormone level by age for males and females
+fulldata = data.frame(cbind(age, testosterone, estradiol, SHBG, age_at_thyroidCancer))
+fulldata$thyroid_cancer = rep("No", nrow(fulldata))
+fulldata$thyroid_cancer[which(!is.na(age_at_thyroidCancer))] = "Yes"
+fulldata_female = fulldata[which(gender == "Female"),]
+fulldata_male = fulldata[which(gender == "Male"),]
+head(fulldata_female)
+head(fulldata_male)
+
+maintitle = "NHANES female: log testosterone by age"
+ggplot(fulldata_female, aes(x = age, y = log(1+testosterone))) + geom_point(colour = "grey") +
+  theme_bw() + ggtitle(maintitle) + xlab("Age") + ylab("log ng/dL") + geom_smooth(color = "blue")
+
+maintitle = "NHANES female: log estradiol by age"
+ggplot(fulldata_female, aes(x = age, y = log(1+estradiol))) + geom_point(colour = "grey") +
+  theme_bw() + ggtitle(maintitle) + xlab("Age") + ylab("log pg/mL") + geom_smooth(color = "red")
+
+maintitle = "NHANES male: log testosterone by age"
+ggplot(fulldata_male, aes(x = age, y = log(1+testosterone))) + geom_point(colour = "grey") +
+  theme_bw() + ggtitle(maintitle) + xlab("Age") + ylab("log ng/dL") + geom_smooth(color = "blue")
+
+maintitle = "NHANES male: log estradiol by age"
+ggplot(fulldata_male, aes(x = age, y = log(1+estradiol))) + geom_point(colour = "grey") +
+  theme_bw() + ggtitle(maintitle) + xlab("Age") + ylab("log pg/mL") + geom_smooth(color = "red")
+
+# Compare thyroid samples with and without thyroid cancer (only 2 male samples, so we work with female)
+thyroid_cancer_samples_F = data.frame(fulldata_female[!is.na(fulldata$age_at_thyroidCancer),])
+normal_samples_F = data.frame(fulldata_female[is.na(fulldata$age_at_thyroidCancer),])
+estro = c(thyroid_cancer_samples_F$estradiol, normal_samples_F$estradiol)
+newdata = data.frame(estro)
+newdata$thyroid_cancer = c(rep("Yes", nrow(thyroid_cancer_samples_F)), rep("No", nrow(normal_samples_F)))
+
+maintitle = "NHANES female: log estrogen in normal vs thyroid cancer samples"
+ggplot(newdata, aes(x = thyroid_cancer, y = log(1+estro))) + geom_half_violin(side = "r") + geom_half_boxplot(side = "l") +
+  theme_bw() + ggtitle(maintitle) + xlab("ever had thyroid cancer") + ylab("log ng/dL")
+
+# Test if estradiol level has any difference between disease and normal
+wilcox.test(thyroid_cancer_samples_F$estradiol, normal_samples_F$estradiol)
