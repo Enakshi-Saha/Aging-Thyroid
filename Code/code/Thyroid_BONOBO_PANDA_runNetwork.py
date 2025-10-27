@@ -26,3 +26,31 @@ ppi_file = "/home/ubuntu/prior_large/ppi_997.txt"
 output_liger = "./BonoboPanda_GSE29315/"
 ligress_obj = Ligress(e, priors_table_file, ppi_file = ppi_file, output_folder = output_liger, mode_process = 'intersection')
 ligress_obj.run_ligress(keep_coexpression=False, delta = 0.3, tune_delta = True, precision = 'single')
+
+
+# PANDA on CPU (GSE33630)
+expression_file = "/home/esaha/Aging_thyroid/data/validation_data/GSE33630/GSE33630_expression.txt"
+priors_table_file = "/home/esaha/Aging_thyroid/data/validation_data/GSE33630/GSE33630_motif.csv"
+e = pd.read_csv(expression_file, sep = "\t", index_col=0)
+ppi_file = "/home/ubuntu/prior_large/ppi_997.txt"
+output_liger = "./BonoboPanda_GSE33630/"
+ligress_obj = Ligress(e, priors_table_file, ppi_file = ppi_file, output_folder = output_liger, mode_process = 'intersection')
+ligress_obj.run_ligress(keep_coexpression=False, delta = 0.3, tune_delta = True, precision = 'single')
+
+# PANDA on CPU (GSE27155)
+expression_file = "/home/esaha/Aging_thyroid/data/validation_data/GSE27155/GSE27155_expression.txt"
+priors_table_file = "/home/esaha/Aging_thyroid/data/validation_data/GSE27155/GSE27155_motif.csv"
+e = pd.read_csv(expression_file, sep = "\t", index_col=0)
+ppi_file = "/home/ubuntu/prior_large/ppi_997.txt"
+output_liger = "./BonoboPanda_GSE27155/"
+ligress_obj = Ligress(e, priors_table_file, ppi_file = ppi_file, output_folder = output_liger, mode_process = 'intersection')
+ligress_obj.run_ligress(keep_coexpression=False, delta = 0.3, tune_delta = True, precision = 'single')
+
+# PANDA on CPU (GSE65144)
+expression_file = "/home/esaha/Aging_thyroid/data/validation_data/GSE65144/GSE65144_expression.txt"
+priors_table_file = "/home/esaha/Aging_thyroid/data/validation_data/GSE65144/GSE65144_motif.csv"
+e = pd.read_csv(expression_file, sep = "\t", index_col=0)
+ppi_file = "/home/ubuntu/prior_large/ppi_997.txt"
+output_liger = "./BonoboPanda_GSE65144/"
+ligress_obj = Ligress(e, priors_table_file, ppi_file = ppi_file, output_folder = output_liger, mode_process = 'intersection')
+ligress_obj.run_ligress(keep_coexpression=False, delta = 0.3, tune_delta = True, precision = 'single')
