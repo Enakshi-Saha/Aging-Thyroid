@@ -1,5 +1,5 @@
 
-Table/Figure #	Program Name	Date of Run
+Table/Figure #	Program Name
 Graphical Abstract	Manually created on Microsoft Powerpoint	
 		
 Table 1	Manually created in R Console	
