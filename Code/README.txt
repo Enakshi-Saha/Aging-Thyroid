@@ -19,6 +19,11 @@ Figure 6 (C-D)	ATC_disease_gene_score_trajectory.R
 Figure S1	GTEx_GSE165724_agingPathway_validation_heatmap.R	
 Figure S2	GTEx_thyroid_aging_bySex_immuneInfiltration_barplot.R	
 Figure S3	NHANES_hormone_by_age_sexDiff.R	
+Figure S4   GTEx_trajectory_LOESS_robustnessCheck_cubicSpline_dataDrivenKnots_3files.R
+Figure S5   GTEx_trajectory_LOESS_robustnessCheck_cubicSpline_dataDrivenKnots_3files.R
+Figure S6   GTEx_trajectory_LOESS_robustnessCheck_cubicSpline_dataDrivenKnots_3files.R
+Figure S7   GSE165724_RNAseq_aging_validation_dataPrep.R
+Figure S8   microarray_identify_sex_with_Ygene_XIST_revision.R
 		
 Table S0	GTEx_thyroid_aging_limma.R	
 Table S1	GTEx_thyroid_aging_limma.R 
