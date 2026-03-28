@@ -22,8 +22,10 @@ Figure S3	NHANES_hormone_by_age_sexDiff.R
 Figure S4   GTEx_trajectory_LOESS_robustnessCheck_cubicSpline_dataDrivenKnots_3files.R
 Figure S5   GTEx_trajectory_LOESS_robustnessCheck_cubicSpline_dataDrivenKnots_3files.R
 Figure S6   GTEx_trajectory_LOESS_robustnessCheck_cubicSpline_dataDrivenKnots_3files.R
-Figure S7   GSE165724_RNAseq_aging_validation_dataPrep.R
-Figure S8   microarray_identify_sex_with_Ygene_XIST_revision.R
+Figure S7   leave1binOut_GTEx_thyroid_agingPathwaySuperclass_trajectory_bySex.R
+Figure S8   GTEx_trajectory_rawAge.R
+Figure S9   GSE165724_RNAseq_aging_validation_dataPrep.R
+Figure S10   microarray_identify_sex_with_Ygene_XIST_revision.R
 		
 Table S0	GTEx_thyroid_aging_limma.R	
 Table S1	GTEx_thyroid_aging_limma.R 
